@@ -10,6 +10,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Configuración básica
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
@@ -20,7 +21,7 @@ const db = new sqlite3.Database("./database.db", (err) => {
   else console.log("Base de datos conectada");
 });
 
-// Crear tabla si no existe
+// Crear tabla si no existe y agregar datos de ejemplo
 db.run(`
   CREATE TABLE IF NOT EXISTS movies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -31,9 +32,26 @@ db.run(`
     description TEXT,
     trailer TEXT
   )
-`);
+`, (err) => {
+  if (err) return console.error(err.message);
 
-// ======== CRUD ========
+  // Datos de ejemplo solo si la tabla está vacía
+  db.get("SELECT COUNT(*) as count FROM movies", (err, row) => {
+    if (err) return console.error(err.message);
+
+    if (row.count === 0) {
+      db.run(`INSERT INTO movies (title, genre, year, poster, description, trailer) VALUES 
+        ('Matrix', 'Ciencia Ficción', '1999', '', 'Película de acción y ciencia ficción', 'https://www.youtube.com/watch?v=vKQi3bBA1y8'),
+        ('Inception', 'Suspenso', '2010', '', 'Sueños dentro de sueños', 'https://www.youtube.com/watch?v=YoHD9XEInc0')
+      `, (err) => {
+        if (err) console.error(err.message);
+        else console.log("Datos de ejemplo insertados");
+      });
+    }
+  });
+});
+
+// ======== RUTAS CRUD ========
 
 // Obtener todas
 app.get("/api/movies", (req, res) => {
