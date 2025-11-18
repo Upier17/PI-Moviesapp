@@ -1,0 +1,184 @@
+/* ====== ESTRUCTURA GENERAL ====== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-image: url('https://wallpaperaccess.com/full/329583.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: rgb(39, 166, 58);
+}
+
+.site-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ====== HEADER ====== */
+header {
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+h2 {
+  color: white;
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* ====== TABLA ====== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: rgb(9, 9, 9);
+  border-radius: 8px;
+  overflow: hidden;
+  color: white;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #333;
+  color: white;
+}
+
+tr:hover {
+  background: #0d6719;
+}
+
+/* ====== BOTONES ====== */
+button {
+  padding: 8px 12px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px 0;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: rgb(0, 0, 0);
+}
+
+/* ====== FORMULARIO ====== */
+.form-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.form-box label {
+  display: block;
+  margin-top: 10px;
+}
+
+.form-box input,
+.form-box textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* ====== MODAL ====== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+}
+
+.modal-content {
+  color: white;
+  background: rgb(9, 9, 9);
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.modal-content img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin-top: 30px;
+  opacity: 0.7;
+  font-weight: bold;
+}
+
+/* ====== RESPONSIVE (MÓVIL) ====== */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0d6719;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    color: rgb(39, 166, 58);
+  }
+
+  button {
+    width: 100%;
+  }
+}
