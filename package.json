@@ -1,15 +1,15 @@
 {
   "name": "crud-app",
   "version": "1.0.0",
-  "description": "CRUD básico con Express y SQLite listo para Railway",
+  "description": "CRUD básico con Express y MySQL listo para Railway",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "better-sqlite3": "^8.3.0",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mysql2": "^3.15.3"
   }
 }
