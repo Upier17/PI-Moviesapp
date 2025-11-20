@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import { db } from './db.js';
+import { db } from "./db.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,12 +10,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuración básica
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-// Crear tabla si no existe (MySQL syntax)
 await db.query(`
   CREATE TABLE IF NOT EXISTS movies (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,6 +26,7 @@ await db.query(`
   )
 `);
 
+
 // Insertar datos de ejemplo si la tabla está vacía
 const [rows] = await db.query("SELECT COUNT(*) AS count FROM movies");
 if (rows[0].count === 0) {
@@ -38,6 +37,7 @@ if (rows[0].count === 0) {
     ('Inception', 'Suspenso', '2010', '', 'Sueños dentro de sueños', 'https://www.youtube.com/watch?v=YoHD9XEInc0')
   `);
 }
+
 
 // ======== RUTAS CRUD ========
 
